@@ -39,21 +39,14 @@ public class Server {
     public void ascolto(){
         try {
              while (true) {
-  
                 // socket object to receive incoming client
                 // requests
                 Socket client = ss.accept();
-  
                 // Displaying that new client is connected
                 // to server
-                System.out.println("New client connected"
-                                   + client.getInetAddress()
-                                         .getHostAddress());
-  
+                System.out.println("New client connected" + client.getInetAddress().getHostAddress());
                 // create a new thread object
-                ClientHandler clientSock
-                    = new ClientHandler(client);
-  
+                ClientHandler clientSock = new ClientHandler(client);
                 // This thread will handle the client
                 // separately
                 new Thread(clientSock).start();
@@ -62,6 +55,7 @@ public class Server {
         catch (IOException e) {
             e.printStackTrace();
         }
+        
         finally {
             if (ss != null) {
                 try {
@@ -72,10 +66,7 @@ public class Server {
                 }
             }
         }
-        
-    }
-    
-    
+    }    
 }
 
 

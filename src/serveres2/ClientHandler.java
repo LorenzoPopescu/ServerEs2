@@ -17,10 +17,8 @@ import java.net.Socket;
  */
 public class ClientHandler implements Runnable{
     private final Socket clientSocket;
-  
         // Constructor
-        public ClientHandler(Socket socket)
-        {
+        public ClientHandler(Socket socket){
             this.clientSocket = socket;
         }
   
@@ -28,32 +26,25 @@ public class ClientHandler implements Runnable{
         {
             PrintWriter out = null;
             BufferedReader in = null;
-            try {
-                    
-                  // get the outputstream of client
-                out = new PrintWriter(
-                    clientSocket.getOutputStream(), true);
-  
-                  // get the inputstream of client
+            try {   
+                // get the outputstream of client
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                // get the inputstream of client
                 in = new BufferedReader(
-                    new InputStreamReader(
-                        clientSocket.getInputStream()));
-  
+                    new InputStreamReader(clientSocket.getInputStream()));
                 String line;
                 while ((line = in.readLine()) != null) {
-  
                     // writing the received message from
                     // client
-                    System.out.printf(
-                        " Sent from the client: %s\n",
-                        line);
+                    System.out.printf(" Sent from the client: %s\n",line);
                     out.println(line);
                 }
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
-            finally {
+            
+            finally{
                 try {
                     if (out != null) {
                         out.close();

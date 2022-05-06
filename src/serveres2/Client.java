@@ -31,25 +31,17 @@ public class Client {
             PrintWriter out;
             out = new PrintWriter(
             so.getOutputStream(), true);
-  
             // reading from server
-            BufferedReader in
-                = new BufferedReader(new InputStreamReader(
-                    so.getInputStream()));
-  
+            BufferedReader in = new BufferedReader(new InputStreamReader(so.getInputStream()));
             // object of scanner class
             Scanner sc = new Scanner(System.in);
             String line = null;
-  
             while (!"exit".equalsIgnoreCase(line)) {
-                
                 // reading from user
                 line = sc.nextLine();
-  
                 // sending the user input to server
                 out.println(line);
                 out.flush();
-  
                 // displaying server reply
                 System.out.println("Server replied " + in.readLine());
             }
